@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1c7ea;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #e63946;
+}
+
+#botonesMarcas button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #55afe7;
+    color: rgb(25, 8, 85);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#botonesMarcas button:hover {
+    background-color: #dbf080;
+}
+
+#modelos {
+    margin-top: 30px;
+}
+
+

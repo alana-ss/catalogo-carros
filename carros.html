@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
         <title>Catalogo de Carros</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="carros.css">
     </head>
-    
-    <body>
 
+    <body>
+        <h1> 🚗 Catalogo de Carros Deportivos🚗 </h1>
+        <p> <strong> En esta pagina podras consultar las marcas disponibles junto con sus modelos</strong> </p>
+        <p id="marcas"> <strong>Marcas Disponibles:</strong> </p>
+        <div id="botonesMarcas">
+            <button onclick="mostrarModelos('porsche')">Porsche</button>
+            <button onclick="mostrarModelos('corvette')">Corvette</button>
+            <button onclick="mostrarModelos('audi')">Audi</button>
+        </div>
+        <div id="modelos"></div>
+        <script> src="carros.js"</script>
     </body>
 </html>
