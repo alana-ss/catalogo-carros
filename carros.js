@@ -1,9 +1,10 @@
 let mensaje = "Bienvenido amante de los autos, continua para descubrir lo que tenemos para ti :) 🚗"
 alert(mensaje)
-const marcas= {
-    porsche: {
-        nombre: "Porsche", modelos: [  {
-            nombre: "911 Turbo S",
+//declaramos constante marcas que va a contener las tres marcas elegidas junto con sus elemento
+const marcas= { 
+    porsche: {  //de definen el objetos de las tres marcas  
+        nombre: "Porsche", modelos: [  {  //dentro de los objetos se encuentran los arreglos con los dos modelos por marca
+            nombre: "911 Turbo S",   // cada elemento del arreglo tiene sus propiedades con su valor asignado
             tipo: "Automático",
             año: 2025,
             precio: "$2,710,000",
@@ -56,11 +57,42 @@ const marcas= {
         ]
     }
 }
+//funcion que mostrara dinamicamente los modelos de la marca de la que se seleccione el boton
 function mostrarModelos(marcaSeleccionada) {
-    const contenedor = document.getElementById("modelos");
-    const marca = marcas[marcaSeleccionada];
+    const contenedor = document.getElementById("modelos"); //se va a trabajar con el id=modelos dentro de un div en html
+    contenedor.innerHTML = ""; // Se declara vacio cada que se inicializa para ir limpiando contenido anterior
 
-    contenedor.innerHTML = `<h2>Modelos de ${marca.nombre}</h2>`;
+    const marca = marcas[marcaSeleccionada]; //se crea la constante marca que va a contener el arreglo de modelos de la marca seleccionada
 
-    marca.modelos.forEach();
+    // Va a ir creando el titulo dependiendo la marca seleccionada
+    const titulo = document.createElement("h2"); //crea elemento de tipo h2 en html
+    titulo.textContent = `Modelos de ${marca.nombre}`; //se manipula el DOM accediendo al nombre de la marca
+    contenedor.appendChild(titulo); //agrega un nuevo nodo dentro de contenedor de tipo titulo
+
+    // Recorre los modelos usando forEach
+    marca.modelos.forEach(function(modelo) {
+        // se crea un contenedor para tarjeta
+        const tarjeta = document.createElement("div"); //crea elemento en html de tipo div
+        tarjeta.classList.add("modeloCard"); // Agregar clase para estilo llamada modeloCard dentro de css
+
+        // Agrega contenido con createElement + textContent
+        const nombre = document.createElement("h3"); //crea un elemento de tipo h3
+        nombre.textContent = `${modelo.nombre} ${modelo.icono}`; // se iserta contenido de texto manipulando el DOM
+        tarjeta.appendChild(nombre); // crea nuevo nodo dentro de la tarjeta de tipo nombre
+
+        const tipo = document.createElement("p"); //crea elemento de tipo p
+        tipo.textContent = `Tipo: ${modelo.tipo}`;
+        tarjeta.appendChild(tipo);
+
+        const año = document.createElement("p");
+        año.textContent = `Año: ${modelo.año}`;
+        tarjeta.appendChild(año);
+
+        const precio = document.createElement("p");
+        precio.textContent = `Precio: ${modelo.precio}`;
+        tarjeta.appendChild(precio);
+
+        //Agrega la tarjeta generada al contenedor principal
+        contenedor.appendChild(tarjeta);
+    });
 }
