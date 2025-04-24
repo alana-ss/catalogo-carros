@@ -15,6 +15,18 @@
             <button onclick="mostrarModelos('corvette')">Corvette</button>
             <button onclick="mostrarModelos('audi')">Audi</button>
         </div>
+        <div id="filtrosBotones">
+            <h2>Filtra los modelos de acuerdo a tus gustos</h2>
+            <button onclick="filtrarPorPrecio('menor')"> Menor a $3M</button>
+            <button onclick="filtrarPorPrecio('mayor')">Mayor a $3M</button>
+            <button onclick="filtrarPorAño(2025)"> Año 2025</button>
+            <button onclick="filtrarPorAño(2024)"> Año 2024</button>
+            <button onclick="filtrarPorAño(2023)"> Año 2023</button>
+            <button onclick="filtrarPorTipo('Automático')"> Automático</button>
+            <button onclick="filtrarPorTipo('Estandar')"> Estándar</button>
+            <button onclick="filtrarPorTipo('Eléctrico')"> Eléctrico</button>
+            <button onclick="mostrarTodos()"> Mostrar todos</button>
+        </div>
         <div id="modelos"></div>
         <script src="carros.js"></script>
     </body>
