@@ -38,3 +38,21 @@ h1 {
     display: inline-block; /*ordena las tarjetas en linea horizontal*/
 }
 
+/*se crean los estilos para los botones de los filtros de busqueda*/
+#filtrosBotones {
+    margin-top: 30px;
+}
+
+#filtrosBotones button {
+    margin: 5px;
+    padding: 8px 15px;
+    background-color: #d4c235;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#filtrosBotones button:hover {
+    background-color: #ffcf40;
+}
