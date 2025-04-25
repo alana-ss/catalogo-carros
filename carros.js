@@ -8,14 +8,16 @@ const marcas= {
             tipo: "Automático",
             año: 2025,
             precio: "$2,710,000",
-            icono: "⚡"
+            icono: "⚡",
+            imagen:  "img/porsche-911.jfif"
         },
         {
             nombre: "911 gt3 rs",
             tipo: "Estandar",
             año: 2025,
             precio: "$4,150,000",
-            icono: "🏎️"
+            icono: "🏎️",
+            imagen:"img/porsche-gt3.jfif" //se declara la propiedad de imagen de la marca con su ruta 
         }]
     }, 
     corvette: {
@@ -26,14 +28,16 @@ const marcas= {
                 tipo: "Estándar",
                 año: 2024,
                 precio: "$6,555,000",
-                icono: "🔥"
+                icono: "🔥",
+                imagen:"img/stingray.jfif"
             },
             {
                 nombre: "Z06",
                 tipo: "Automático",
                 año: 2025,
                 precio: "$5,870,000",
-                icono: "🚀"
+                icono: "🚀",
+                imagen:"img/z06.jfif"
             }
         ]
     },
@@ -45,14 +49,16 @@ const marcas= {
                 tipo: "Automático",
                 año: 2023,
                 precio: "$2,800,000",
-                icono: "🦾"
+                icono: "🦾",
+                imagen: "img/r8.jfif"
             },
             {
                 nombre: "e-tron GT",
                 tipo: "Eléctrico",
                 año: 2025,
                 precio: "$2,720,000",
-                icono: "🔋"
+                icono: "🔋",
+                imagen: "img/e-tronGt.jfif"
             }
         ]
     }
@@ -74,6 +80,20 @@ function mostrarModelos(marcaSeleccionada) {
         // se crea un contenedor para tarjeta
         const tarjeta = document.createElement("div"); //crea elemento en html de tipo div
         tarjeta.classList.add("modeloCard"); // Agregar clase para estilo llamada modeloCard dentro de css
+
+        //se crea contenedor para la imagen del modelo
+        const divImagen = document.createElement("div");
+        divImagen.classList.add("contenedorImagen");
+        
+        // se crea la imagen
+        const imagen = document.createElement("img");
+        imagen.src = modelo.imagen; // ← usa la ruta local
+        imagen.alt = modelo.nombre;
+        imagen.classList.add("modeloImagen");
+        
+        // Insertar imagen en el contenedor
+        divImagen.appendChild(imagen);
+        tarjeta.appendChild(divImagen);
 
         // Agrega contenido con createElement + textContent
         const nombre = document.createElement("h3"); //crea la constante nombre dentro de una etiqueta de tipo h3
@@ -124,6 +144,12 @@ function mostrarModelosFiltrados(listaModelos) {
 
         const nombre = document.createElement("h3");
         nombre.textContent = `${modelo.nombre} ${modelo.icono}`; //manipulando el DOM se crea el nombre y el icono
+        const imagen = document.createElement("img"); //crea un elemento dentro del html de tipo img
+        imagen.src = modelo.imagen; //se crea la ruta para la imagen
+        imagen.alt = modelo.nombre; //se crea el nombre de la imagen
+        imagen.classList.add("modeloImagen"); //agraga la clase modeloImagen dentro de imagen
+        tarjeta.appendChild(imagen); //crea el nuevo nodo de imagen dentro de la tarjeta del modelo
+
         tarjeta.appendChild(nombre); //dentro de la tarjeta con appendChild crea un nuevo nodo con lo que se creo
 
         const tipo = document.createElement("p"); //se crea una costante tipo que ira creando etiquetas p
@@ -171,3 +197,39 @@ function mostrarTodos() {
     const todos = obtenerTodosLosModelos(); //obtiene el arreglo con todos los modelos de las marcas disponibles
     mostrarModelosFiltrados(todos); //muestra todos los modelos de las marcas
 }
+
+
+function calcularPromedioPrecios(modelos) { //funcion que calculapromedio de los precios
+    if (modelos.length === 0) return 0; //agrega condicional si el arreglo de modelos esta vacio
+    const precios = modelos.map(m => parseInt(m.precio.replace(/\$|,/g, ""))); //a la constante precios se va mapeando cada 
+    //modelo en donde se aplica la misma funcion que el filtrar precio para eliminar las comas y el signo de pesos 
+    const total = precios.reduce((suma, precio) => suma + precio, 0); //dentro de la constante total y usando la funcion de .reduce que obtiene suma y precio una sola cantidad obtenida de la suma de los precios
+    return Math.round(total / modelos.length); //usando math.round va a redondear la cantidad total entre en numero de modelos para obtener el promedio
+}
+
+function mostrarPromedios() { //funcion para mostrar los promedios
+    const promedioGeneral = document.getElementById("promedioGeneral"); //va a trabajar unicamente con el promedio general
+    const contenedorPorMarca = document.getElementById("promediosPorMarca"); //trabaja con el promedio por marca especifica
+
+    if (!promedioGeneral || !contenedorPorMarca) { //se crea condicional para verificar que existan los elementos dentro del html y evitar errores
+        console.error("No se encontró el contenedor de promedios en el HTML");
+        return;
+    }
+
+    const todos = obtenerTodosLosModelos(); //se obtiene todos los modelos que existen con la funcion y se guardan en la constante todos
+    const promedioTotal = calcularPromedioPrecios(todos); //dentro de la constante de promedios totales se va a guardar el promedio de los precios que recibe como parametro todos los modelos
+    promedioGeneral.textContent = ` Promedio general de todos los modelos: $${promedioTotal.toLocaleString()}`; // dentro del promedio general muestra el promedio general de los modelos usando textContent y templates literarios
+
+    contenedorPorMarca.innerHTML = ""; //limpia el contenido de el contenedor por cada marca
+    //for para calcular el promedio de precio por marca
+    for (const clave in marcas) { //usa un for donde se declara la constante clave para cada elemento en marcas
+        const modelos = marcas[clave].modelos; //se usa la constante modelos para acceder al contenido de la clave de marca y a sus modelos
+        const promedioMarca = calcularPromedioPrecios(modelos); //dentro de la constante promedioMarca se guarda el promedio de los modelos
+
+        const parrafo = document.createElement("p"); //dentro de la constante parrafo  se crea una etiquta p
+        parrafo.textContent = ` Promedio de ${marcas[clave].nombre}: $${promedioMarca.toLocaleString()}`; //con textContent dentro de la etiqueta p con templates literios muestra el promedio del precio por marca
+        //y usando .toLocaleString() mantiene el formato original con el que se muestra el precio
+        contenedorPorMarca.appendChild(parrafo); //se crea un nuevo nodo de parrafo dentro del contenedor por marca
+    }
+}
+
