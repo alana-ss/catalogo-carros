@@ -12,7 +12,7 @@ h1 {
 #botonesMarcas button {
     margin: 10px;
     padding: 10px 20px;
-    background-color: #55afe7;
+    background-color: #35eb62;
     color: rgb(25, 8, 85);
     border: none;
     border-radius: 5px;
@@ -29,14 +29,35 @@ h1 {
 
 /*Estilo para las tarjetas creadas para cada modelo de marca*/
 .modeloCard {  
-    background-color: rgb(240, 139, 164);
+    background-color: rgb(128, 174, 245);
     border: 1px solid #76c1f3;
     padding: 15px;
     margin: 10px;
     border-radius: 8px;
-    width: 250px; /*establece un tamaño fijo para cada tarjeta*/
-    display: inline-block; /*ordena las tarjetas en linea horizontal*/
+    width: 300px;  /* O el tamaño que prefieras para las tarjetas */
+    height: 400px; /*establece un tamaño fijo para cada tarjeta*/
+    display: flex; /*ordena las tarjetas */
+    overflow: hidden;  /* Asegura que las imágenes no se desborden fuera de la tarjeta */
+    flex-direction: column; /*alinea las tarjetas en forma de columna*/
+    align-items: center; /*muestra las tarjetas en el centro de la pagina*/
 }
+
+/* Contenedor de la imagen dentro de la tarjeta */
+.contenedorImagen {
+    width: 100%;  /* Asegura que el contenedor de la imagen ocupe todo el ancho de la tarjeta */
+    height: 200px;  /* Altura fija para la imagen, puedes ajustar esta altura según el diseño */
+    display: flex; /*tipo de alineacion que va a tener*/
+    justify-content: center; /*coloca los elementos dentro del centro de la tarjeta*/
+    align-items: center;/*alinea el contenido en el centro de la pagina*/
+  }
+  
+  /* Estilo de la imagen */
+  .modeloImagen {
+    width: 100%;  /* Hace que la imagen ocupe todo el ancho del contenedor */
+    height: 100%; /* Hace que la imagen ocupe toda la altura del contenedor */
+    object-fit: cover; /* Ajusta la imagen para que cubra todo el contenedor sin distorsionarse */
+    object-position: center; /* Centra la imagen dentro del contenedor */
+  }
 
 /*se crean los estilos para los botones de los filtros de busqueda*/
 #filtrosBotones {
@@ -55,4 +76,15 @@ h1 {
 
 #filtrosBotones button:hover {
     background-color: #ffcf40;
+}
+
+#promedios {
+    margin-top: 40px;
+    background-color: #fff3cd;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #ffeeba;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
