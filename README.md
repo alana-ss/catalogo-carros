@@ -20,6 +20,12 @@ function obtenerTodosLosModelos()
 ´´´
 function mostrarModelosFiltrados(listaModelos)
 ´´´
+-Con las siguientes funciones se obtiene un promedio de los precios por cada modelo existente asi como para cada marca y despues se muestra 
+
+´´´
+function calcularPromedioPrecios(modelos)
+function mostrarPromedios()
+´´´
 
 
 Uso de Estilos 
@@ -27,6 +33,7 @@ Dentro del CSS se implementan los estilos para hacer mejoras visuales implementa
 
 Tambien se usan estilos diferentes para los botones de los filtros de busqueda
 
+Se impelentan nuevas funciones que nos permiten adecuar una imagen dentro de un elemento ya existente y que se vea esteticamente visualmente
 
 
 Herramientas Usadas
@@ -34,11 +41,12 @@ HTML
 JavaScript
 CSS
 README.md
+Carpeta de imagenes 
 
 Aprendizaje
 Manipulacion de DOM
 Uso de Templates literarios
 implementacion de condicionales
 Uso de .contact, .parseInt, .replace, .filter, .add, .appendChild, .createElement, .textContent de forma correcta
-
+Implementacion de imagenes asi como modificacion de su estilo desde css con el uso de display, overflow, aling.items y justify content para mejoras visuales 
 
